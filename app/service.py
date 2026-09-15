@@ -57,8 +57,8 @@ def complete_task(task_id: int) -> dict[str, Any] | None:
             updated_task["status"] = "done"
             updated_task["completed_at"] = datetime.now(timezone.utc).isoformat()
 
-            # Instructor note: intentional bug for the lab.
-            # The updated task is returned, but the stored list is never updated or saved.
+            task.update(updated_task)
+            save_tasks(tasks)
             return updated_task
 
     return None
